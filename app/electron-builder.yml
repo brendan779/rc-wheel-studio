@@ -1,0 +1,32 @@
+appId: com.rcwheelstudio.app
+productName: RC Wheel Studio
+directories:
+  buildResources: build
+files:
+  - '!**/.vscode/*'
+  - '!src/*'
+  - '!electron.vite.config.{js,ts,mjs,cjs}'
+  - '!{.eslintcache,eslint.config.mjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
+  - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
+  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+asarUnpack:
+  - resources/**
+extraResources:
+  - from: ../wheel.py
+    to: wheel.py
+mac:
+  category: public.app-category.utilities
+  entitlementsInherit: build/entitlements.mac.plist
+  extendInfo:
+    - NSDocumentsFolderUsageDescription: Used when you choose an export folder for print-ready files.
+    - NSDownloadsFolderUsageDescription: Used when you choose an export folder for print-ready files.
+  identity: null
+  notarize: false
+  target:
+    - target: dmg
+      arch: [arm64]
+    - target: zip
+      arch: [arm64]
+dmg:
+  artifactName: ${name}-${version}.${ext}
+npmRebuild: false
