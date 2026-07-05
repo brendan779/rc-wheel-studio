@@ -42,23 +42,29 @@ the app.
 
 - macOS (Apple Silicon)
 - [Node.js](https://nodejs.org/) 18+ and npm
-- Python 3 — the app looks for a working Python at first launch and offers
-  to set up a local virtual environment with
-  [build123d](https://github.com/gumyr/build123d) automatically. You don't
-  need to install anything Python-related yourself ahead of time.
+- A `python3` on your `PATH`. Check with `python3 --version` in Terminal —
+  if that fails, install it via `xcode-select --install` (Xcode Command
+  Line Tools) or from [python.org](https://www.python.org/downloads/).
+  You do **not** need to install [build123d](https://github.com/gumyr/build123d)
+  yourself — the app detects it's missing on first launch and installs it
+  into a local virtual environment automatically. It only needs `python3`
+  itself to already be there to build that environment from.
 
 ## Building and running
 
 ```bash
+git clone https://github.com/brendan779/rc-wheel-studio.git
+cd rc-wheel-studio
+
 cd app
 npm install
 npm run dev          # launch in development mode
 ```
 
-To build a standalone `.app` you can install locally:
+To build a standalone `.app` you can install locally, run this instead of
+`npm run dev` (from the same `app/` directory):
 
 ```bash
-cd app
 npm run build:mac    # outputs app/dist/RC Wheel Studio-*.dmg and .zip
 ```
 
